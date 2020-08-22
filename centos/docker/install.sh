@@ -10,6 +10,9 @@ sudo service docker start
 # 设置开机启动
 sudo systemctl enable docker
 
+# 关闭防火墙
+systemctl stop firewalld.service && systemctl disable firewalld.service
+
 # 设置阿里云镜像日志大小
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<-'EOF'
