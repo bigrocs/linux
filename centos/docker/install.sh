@@ -10,8 +10,13 @@ sudo service docker start
 # 设置开机启动
 sudo systemctl enable docker
 
+#CentOS关闭selinux
+sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 # 关闭防火墙
 systemctl stop firewalld.service && systemctl disable firewalld.service
+
+# 修改时区
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 设置阿里云镜像日志大小
 sudo mkdir -p /etc/docker
@@ -19,7 +24,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
 {
   "registry-mirrors": ["https://za6g16o8.mirror.aliyuncs.com"],
   "log-driver":"json-file",
-  "log-opts":{ "max-size" :"50m","max-file":"3"}
+  "log-opts":{ "max-size" :"100m","max-file":"3"}
 }
 EOF
 sudo systemctl daemon-reload
