@@ -1,7 +1,7 @@
 # linux
 
 ## centos7
-### docker
+### docker 一键安装
 ```
-https://raw.githubusercontent.com/bigrocs/linux/master/centos/docker/install.sh
+yum install -y wget && wget -O install.sh https://raw.githubusercontent.com/bigrocs/linux/master/centos/docker/install.sh && sh install.sh
 ```
